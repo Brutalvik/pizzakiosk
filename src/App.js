@@ -1,19 +1,12 @@
 import React from 'react'
 import './Styles.css'
-
-const Menu = () => {
-    return 'Menu'
-}
-
-const Sidebar = () => {
-    return 'Sidebar'
-}
-
+import Menu from './Menu/Menu'
+import Sidebar from './Sidebar/Sidebar'
 
 const App = () => 
-    <div>
-        <Menu />
+    <div className="frame">
         <Sidebar />
+        <Menu />
     </div>
 
 export default App
