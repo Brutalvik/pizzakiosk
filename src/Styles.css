@@ -10,5 +10,5 @@ body{
 .frame {
     display: grid;
     grid-template-columns: 350px auto;
-    grid-gap: 10px;
+    grid-gap: 30px;
 }

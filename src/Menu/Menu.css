@@ -1,0 +1,70 @@
+.sidebar {
+
+    margin-left: 5%;
+    display: grid;
+    grid-template-rows: 80px auto 100px 100px;
+    height: 100vh;
+    place-items: center;   
+}
+
+/*Buttercrust Logo Placement*/
+.logo {
+    width: 100%;
+    height: 50px;
+}
+
+.logo-div {
+    margin-top: 5%;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+/*Side Nav Transition CSS*/
+
+.sidenav {
+    background-color: #252a35;
+    color: honeydew;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+}
+
+.sidenav:hover {
+    background-color: #1f232c;
+}
+
+.show:hover{
+    background-color:#1b1f27;
+}
+
+
+/*Done Button css on the sideNav*/
+.btn-sidemenu{  
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+    background-color: #f8aa00;
+    font-size: 20px;
+    font-weight: bold;
+    color: #14232c, 
+}
+
+.btn-sidemenu:active{  
+    cursor: pointer;
+    background-color: #eca30675;
+}
+
+.btn-sidemenu:hover{  
+    cursor: pointer;
+}
+
+.menu {
+    overflow: auto;
+    padding: 20px;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}

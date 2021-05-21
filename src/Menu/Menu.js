@@ -1,11 +1,63 @@
-import React from 'react'
+import React, { useState } from 'react'
+import buttercrust from '../Assets/butter.png'
+import Typography from '@material-ui/core/Typography';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Pizzas from '../Components/Pizzas'
+import Pasta from '../Components/Pasta'
+import './Menu.css'
+import '../Styles.css'
 
-const Menu = () => {
+//Sidenav Font Size
+const theme = createMuiTheme({
+    typography: {
+      fontSize: 15
+    },
+  });
+
+
+function Sidebar (pizzaData, pastaData) {
+    const [active, setActive] = useState("pasta")
+
     return (
-        <div className="menu">
-           
+        <div className="frame">
+        <div className="sidebar">
+            <div className="logo-div">
+                <img className="logo" src={buttercrust} alt="headlogo"/>
+            </div>
+            <div className="sidenav-div">
+            <ThemeProvider theme={theme}>
+                <Typography onClick={() => setActive("pizza")} className="sidenav">Pizza</Typography>
+            </ThemeProvider>
+            <br/>
+            <ThemeProvider theme={theme}>
+                <Typography  onClick={() => setActive("pasta")}className="sidenav">Pasta</Typography>
+            </ThemeProvider>
+            <br/>
+            <ThemeProvider theme={theme}>
+                <Typography className="sidenav">Poppers</Typography>
+            </ThemeProvider>
+            <br/>
+            <ThemeProvider theme={theme}>
+                <Typography className="sidenav">Breads</Typography>
+            </ThemeProvider>
+            <br/>
+            <ThemeProvider theme={theme}>
+                <Typography className="sidenav">Drinks</Typography>
+            </ThemeProvider>
+            <br/>
+            <ThemeProvider theme={theme}>
+                <Typography className="sidenav">Deserts</Typography>
+            </ThemeProvider>
+            <br/>
+            <button className="btn-sidemenu">Done</button>
+            </div>
         </div>
-    )
-}
+        <div>
+            {active === "pizza" && <Pizzas pizzaCard={pizzaData}/>}
+            {active === "pasta" && <Pasta pastaCard={pastaData}/>}   
+        </div>
+    </div>
+        )
+    }
 
-export default Menu
+export default Sidebar
