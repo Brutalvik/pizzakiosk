@@ -14,8 +14,6 @@ const useStyles = makeStyles({
     root: {
         minWidth: 300,
         height: 350,
-        margin: 20,
-        backgroundColor: '#405469',
       },
       content: {
           textAlign: 'justify',
@@ -43,7 +41,6 @@ const useStyles = makeStyles({
   });
 
 
-
 function Pasta({ pastaCard }) {
 
     const classes = useStyles();
@@ -65,6 +62,7 @@ function Pasta({ pastaCard }) {
         }]
 
         const pasta = pastas.map(pasta => (
+
             <div>
             <Grid container>
                 <Grid item xs={12} sm={6} md={4}>
@@ -74,8 +72,8 @@ function Pasta({ pastaCard }) {
                         <CardMedia
                             className={classes.media}
                             image="./vegeselect.jpg"
-                            title="pizza"
-                        />
+                            title="pizza"/>
+                            
                         <CardContent>
                             <Typography className={classes.cardhead}>
                                 {pasta.name}
@@ -102,7 +100,7 @@ function Pasta({ pastaCard }) {
         ))
 
     return (
-        <div>
+        <div className="menu">
             {pasta}
         </div>
     )

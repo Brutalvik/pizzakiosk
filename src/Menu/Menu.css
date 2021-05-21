@@ -1,5 +1,5 @@
 .sidebar {
-
+    overflow: auto;
     margin-left: 5%;
     display: grid;
     grid-template-rows: 80px auto 100px 100px;
@@ -67,4 +67,15 @@
     place-items: center;
     gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.modal {
+   color: black;
+   text-align: center;
+}
+
+.modalbtn {
+    overflow: auto;
+    padding-top:30%;
+    text-align: center;
 }
