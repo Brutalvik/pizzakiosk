@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     root: {
         minWidth: 300,
         height: 350,
+        borderRadius: 20,
       },
       content: {
           textAlign: 'justify',
@@ -41,7 +42,7 @@ const useStyles = makeStyles({
   });
 
 
-function Pasta({ pastaCard }) {
+function Pasta({ cards }) {
 
     const classes = useStyles();
 
@@ -50,15 +51,25 @@ function Pasta({ pastaCard }) {
             id: 1,
             name: "Chicken Alfredo",
             category: "nonveg",
+            img: "https://www.jessicagavin.com/wp-content/uploads/2019/08/chicken-alfredo-8-1200.jpg",
             description: "Grilled 100% all white meat chicken and Alfredo sauce baked to a creamy goodness with penne pasta",
             price: "7.99"
         },
         {
-            id: 1,
+            id: 2,
             name: "Veg Alfredo",
             category: "veg",
+            img: "https://www.laaloosh.com/wp-content/uploads/2014/06/vegetable-alfredo.jpg",
             description: "Grilled 100% vegetables and Alfredo sauce baked to a creamy goodness with fuselli pasta",
-            price: "7.99"
+            price: "5.99"
+        },
+        {
+            id: 3,
+            name: "Sphagetti Cabonara",
+            category: "nonveg",
+            img: "https://bellyfull.net/wp-content/uploads/2020/03/Spaghetti-Carbonara-blog-2.jpg",
+            description: "Sphagetty cooked gently, topping slices of bacon and chicken, creamy, luscious, and bursting with flavor",
+            price: "10.99"
         }]
 
         const pasta = pastas.map(pasta => (
@@ -71,8 +82,8 @@ function Pasta({ pastaCard }) {
                     <CardActionArea className={classes.content}>
                         <CardMedia
                             className={classes.media}
-                            image="./vegeselect.jpg"
-                            title="pizza"/>
+                            image={pasta.img}
+                            title="pasta"/>
                             
                         <CardContent>
                             <Typography className={classes.cardhead}>

@@ -4,7 +4,13 @@ import Typography from '@material-ui/core/Typography';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Pizzas from '../Components/Pizzas'
 import Pasta from '../Components/Pasta'
+import Popper from '../Components/Poppers';
+import Breads from '../Components/Breads';
+import Drinks from '../Components/Drinks';
+import Deserts from '../Components/Deserts';
 import Modalwin from '../Components/Modalwin';
+import Default from '../Components/Default';
+import butter from '../Assets/logo.png'
 import './Menu.css'
 import '../Styles.css'
 
@@ -16,9 +22,9 @@ const theme = createMuiTheme({
   });
 
 
-function Sidebar (pizzaData, pastaData, modalData) {
-    const [active, setActive] = useState("pizza")
-
+function Sidebar (cardData) {
+    const [active, setActive] = useState("default")
+    console.log(active)
     return (
         <div className="frame">
         <div className="sidebar">
@@ -31,33 +37,39 @@ function Sidebar (pizzaData, pastaData, modalData) {
             </ThemeProvider>
             <br/>
             <ThemeProvider theme={theme}>
-                <Typography  onClick={() => setActive("pasta")}className="sidenav">Pasta</Typography>
+                <Typography  onClick={() => setActive("pasta")} className="sidenav">Pasta</Typography>
             </ThemeProvider>
             <br/>
             <ThemeProvider theme={theme}>
-                <Typography className="sidenav">Poppers</Typography>
+                <Typography onClick={() => setActive("popper")} className="sidenav">Poppers</Typography>
             </ThemeProvider>
             <br/>
             <ThemeProvider theme={theme}>
-                <Typography className="sidenav">Breads</Typography>
+                <Typography onClick={() => setActive("breads")} className="sidenav">Breads</Typography>
             </ThemeProvider>
             <br/>
             <ThemeProvider theme={theme}>
-                <Typography className="sidenav">Drinks</Typography>
+                <Typography onClick={() => setActive("drinks")} className="sidenav">Drinks</Typography>
             </ThemeProvider>
             <br/>
             <ThemeProvider theme={theme}>
-                <Typography className="sidenav">Deserts</Typography>
+                <Typography onClick={() => setActive("deserts")} className="sidenav">Deserts</Typography>
             </ThemeProvider>
             <br/>
             <button onClick={() => setActive("modalwin")} className="btn-sidemenu">Done</button>
             </div>
+            <img className="small" src={butter} alt="logo"/>
         </div>
         <div>
-            {active === "pizza" && <Pizzas pizzaCard={pizzaData}/>}
-            {active === "pasta" && <Pasta pastaCard={pastaData}/>}
+            {active === "default" && <Default card={cardData}/>}
+            {active === "pizza" && <Pizzas card={cardData}/>}
+            {active === "pasta" && <Pasta card={cardData}/>}
+            {active === "popper" && <Popper card={cardData}/>}
+            {active === "breads" && <Breads card={cardData}/>}
+            {active === "drinks" && <Drinks card={cardData}/>}
+            {active === "deserts" && <Deserts card={cardData}/>}
         </div>
-        {active === "modalwin" && <Modalwin modalCard={modalData}/>}
+        {active === "modalwin" && <Modalwin modalCard={cardData}/>}
     </div>
         )
     }

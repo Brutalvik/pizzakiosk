@@ -47,7 +47,8 @@
     background-color: #f8aa00;
     font-size: 20px;
     font-weight: bold;
-    color: #14232c, 
+    color: #14232c;
+    margin: 10px;
 }
 
 .btn-sidemenu:active{  
@@ -69,13 +70,33 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
+.small {
+    padding-top: 50px;
+    height: 150px;
+}
+
 .modal {
-   color: black;
-   text-align: center;
+    color: black;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    grid-template-rows: 50px auto 0px 80px;
 }
 
 .modalbtn {
     overflow: auto;
     padding-top:30%;
     text-align: center;
+}
+
+.mdclear {
+    padding-left: 90%;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.logo {
+    color: honeydew;
+    text-align: center;
+    margin-top: 15%;
 }
