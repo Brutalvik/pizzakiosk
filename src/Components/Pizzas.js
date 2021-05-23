@@ -43,14 +43,10 @@ const useStyles = makeStyles({
     },
 });
 
-
-
 const Pizzas = observer(({cards}) => {
 
     const classes = useStyles();
     const pizza = store.pizzas.map((pizza, pizza_index) => (
-
-
         <Card key={pizza.id} className={classes.root}>
             <CardActionArea className={classes.content}>
                 <CardMedia
@@ -81,12 +77,7 @@ const Pizzas = observer(({cards}) => {
     ))
 
     return (
-        <div className="menu" style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gridTemplateRows: '300px',
-            gap: '20px'
-        }}>{pizza}<br /></div>
+        <div className="menu">{pizza}<br /></div>
     )
 })
 

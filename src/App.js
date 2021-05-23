@@ -9,5 +9,4 @@ const App = () =>
     <div>
         <Menu/>
     </div>
-
 export default App
