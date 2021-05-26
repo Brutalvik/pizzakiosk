@@ -73,7 +73,7 @@ const Pizzas = observer(({cards}) => {
                 <Typography className={classes.price}>
                     ${pizza.price}
                 </Typography>
-               
+
                     <Button onClick={() => store.rem_product(store.pizzas, pizza_index)} size="large" className={classes.rembutton}>
                     -  
                     </Button>
@@ -83,7 +83,6 @@ const Pizzas = observer(({cards}) => {
                     <Button onClick={() => store.add_product(store.pizzas, pizza_index)} size="large" className={classes.button}>
                     +
                     </Button>
-
             </CardActions>
         </Card>
     ))

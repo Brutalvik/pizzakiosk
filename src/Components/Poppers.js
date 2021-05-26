@@ -73,7 +73,7 @@ const Poppers = observer(({cards}) => {
                 <Typography className={classes.price}>
                     ${popper.price}
                 </Typography>
-               
+                
                     <Button onClick={() => store.rem_product(store.pop, popper_index)} size="large" className={classes.rembutton}>
                     -  
                     </Button>

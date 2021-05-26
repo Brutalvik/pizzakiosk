@@ -5,6 +5,7 @@ import '../Menu/Menu.css'
 import {observer} from 'mobx-react-lite';
 import {store} from './Store';
 
+
 const Modalwin = observer(({cards}) => {
 
     const [modalIsOpen, setModalState] = useState(true)
@@ -16,13 +17,14 @@ const Modalwin = observer(({cards}) => {
                     <div className="mdclear">
                         <MdClear onClick={() => setModalState(false)} />
                     </div>
+                    <div className="modalheader">
                     <h1>Thank you !</h1>
                     <h4>Enjoy Your Pizza</h4>
+                    </div>
                     <div className="price-menu">
                         <table>
                             <th>Product</th>
                             <th>Quantity</th>
-                            <th>Price/Product</th>
                             <th>Price</th>
                         <tr>
                                 <td>
@@ -36,12 +38,6 @@ const Modalwin = observer(({cards}) => {
                                     .filter(pizza => pizza.quantity > 0)
                                     .map(pizza => 
                                     <div>{pizza.quantity} </div>)}
-                                </td>
-                                <td>
-                                    {store.pizzas
-                                    .filter(pizza => pizza.quantity > 0)
-                                    .map(pizza => 
-                                    <div>${pizza.price} </div>)}
                                 </td>
                                 <td>
                                     {store.pizzas
@@ -67,12 +63,6 @@ const Modalwin = observer(({cards}) => {
                                     {store.pastas
                                     .filter(pasta => pasta.quantity > 0)
                                     .map(pasta => 
-                                    <div>${pasta.price} </div>)}
-                                </td>
-                                <td>
-                                    {store.pastas
-                                    .filter(pasta => pasta.quantity > 0)
-                                    .map(pasta => 
                                     <div>${pasta.price * pasta.quantity} </div>)}
                                 </td>
                         </tr>
@@ -88,12 +78,6 @@ const Modalwin = observer(({cards}) => {
                                     .filter(popper => popper.quantity > 0)
                                     .map(popper => 
                                     <div>{popper.quantity} </div>)}
-                                </td>
-                                <td>
-                                    {store.pop
-                                    .filter(popper => popper.quantity > 0)
-                                    .map(popper => 
-                                    <div>${popper.price} </div>)}
                                 </td>
                                 <td>
                                     {store.pop
@@ -119,12 +103,6 @@ const Modalwin = observer(({cards}) => {
                                     {store.breads
                                     .filter(bread => bread.quantity > 0)
                                     .map(bread => 
-                                    <div>${bread.price} </div>)}
-                                </td>
-                                <td>
-                                    {store.breads
-                                    .filter(bread => bread.quantity > 0)
-                                    .map(bread => 
                                     <div>${bread.price * bread.quantity} </div>)}
                                 </td>
                         </tr>
@@ -140,12 +118,6 @@ const Modalwin = observer(({cards}) => {
                                     .filter(drink => drink.quantity > 0)
                                     .map(drink => 
                                     <div>{drink.quantity} </div>)}
-                                </td>
-                                <td>
-                                    {store.drinks
-                                    .filter(drink => drink.quantity > 0)
-                                    .map(drink => 
-                                    <div>${drink.price} </div>)}
                                 </td>
                                 <td>
                                     {store.drinks
@@ -171,20 +143,19 @@ const Modalwin = observer(({cards}) => {
                                     {store.deserts
                                     .filter(desert => desert.quantity > 0)
                                     .map(desert => 
-                                    <div>${desert.price} </div>)}
-                                </td>
-                                <td>
-                                    {store.deserts
-                                    .filter(desert => desert.quantity > 0)
-                                    .map(desert => 
                                     <div>${desert.price * desert.quantity} </div>)}
                                 </td>
+                        </tr>
+                        <br></br>
+                        <tr>
+                            <th>Subtotal</th>
+                            
                         </tr>
                         </table>
                     </div>
                     <div className="modalbtn">
-                    <button className="btn-sidemenu" onClick={() => setModalState(false)}>Assistance</button>
-                    <button className="btn-sidemenu" onClick={() => setModalState(false)}>Pay</button>
+                        <button className="btn-sidemenu" onClick={() => setModalState(false)}>Assistance</button>
+                        <button className="btn-sidemenu" onClick={() => setModalState(false)}>Pay</button>
                     </div>
                 </div>
             </Modal>
