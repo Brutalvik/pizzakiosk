@@ -33,9 +33,15 @@ const useStyles = makeStyles({
         fontWeight: 'bolder',
         fontSize: 15,
     },
+    rembutton: {
+        backgroundColor: "tomato",
+        fontWeight: 'bolder',
+        fontSize: 15,
+    },
     price: {
         fontWeight: 'bold',
         fontSize: 20,
+        textAlign: 'center',
     },
     desc: {
         fontWeight: 'normal',
@@ -63,13 +69,19 @@ const Pizzas = observer(({cards}) => {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions style={{display: 'grid', gridTemplateColumns: '80px auto 80px'}}>
+            <CardActions style={{display: 'grid', gridTemplateColumns: '60px 60px 60px 60px', gap: '10px'}}>
                 <Typography className={classes.price}>
                     ${pizza.price}
                 </Typography>
-                Quantity: {store.pizzas[pizza_index].quantity}
-                <Button onClick={() => store.add_pizza(pizza_index)} size="large" className={classes.button}>
-                    Add
+               
+                    <Button onClick={() => store.rem_product(store.pizzas, pizza_index)} size="large" className={classes.rembutton}>
+                    -  
+                    </Button>
+                    <div className={classes.price}>
+                    {store.pizzas[pizza_index].quantity}
+                    </div>   
+                    <Button onClick={() => store.add_product(store.pizzas, pizza_index)} size="large" className={classes.button}>
+                    +
                     </Button>
 
             </CardActions>
