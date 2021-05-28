@@ -1,3 +1,4 @@
+/* sidebar */
 .sidebar {
     overflow: auto;
     margin-left: 5%;
@@ -15,12 +16,12 @@
     padding: 0;
 }
 
+/* logo-top */
 .logo-div {
     padding-left: 10px;
 }
 
-/*Side Nav Transition CSS*/
-
+/*Side Nav CSS*/
 .sidenav {
     background-color: #252a35;
     color: honeydew;
@@ -37,8 +38,7 @@
     background-color:#1b1f27;
 }
 
-
-/*Done Button css on the sideNav*/
+/*Done Button css on the sidenav*/
 .btn-sidemenu{
     cursor: pointer;
     width: 200px;
@@ -61,6 +61,7 @@
     cursor: pointer;
 }
 
+/* div return on all components */
 .menu {
     overflow: auto;
     padding: 20px;
@@ -72,12 +73,14 @@
     gap: 20px;
 }
 
+/* bottom logo on sidenav */
 .small {
     height: 150px;
     width: 150px;
     margin-top: 50px;
 }
 
+/* modal body */
 .modal {
     overflow-x: hidden;
     overflow-y: auto;
@@ -90,45 +93,53 @@
     background-color: #3d4557;
 }
 
+/* modal header */
 .modalheader {
     overflow: hidden;
     margin-bottom: -20px;
     margin-top: -50px;
 }
 
+/* modal buttons div*/
 .modalbtn {
     text-align: center;
 }
 
+/* modal close */
 .mdclear {
     padding-left: 90%;
     cursor: pointer;
     font-size: 30px;
 }
 
+/* main logo */
 .logo {
     color: honeydew;
     text-align: center;
     margin-top: 15%;
 }
 
+/* modal paper */
 .modalbody {
     display: table;
     column-count: 3;
     float: left;
 }
 
+/* pricing section */
 .price {
     text-align: left;
     word-spacing: 10px;
 }
 
+/* spinner */
 .circle {
     padding-top: 10em;
     height: 10em;
     width: 5em;
 }
 
+/* no order div */
 .order {
     padding: 6.5em;
 }

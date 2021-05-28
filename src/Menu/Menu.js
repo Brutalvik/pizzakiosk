@@ -20,9 +20,11 @@ function Sidebar(cardData) {
     return (
         <div className="frame">
             <div className="sidebar">
+                {/* logo text */}
                 <div className="logo-div">
                     <img className="logo" src={buttercrust} alt="headlogo" />
                 </div>
+                {/* side menu */}
                 <div className="sidenav-div">
                     <Typography onClick={() => setActive("pizza")} className="sidenav">Pizza</Typography>
                     <br />
@@ -38,8 +40,10 @@ function Sidebar(cardData) {
                     <br />
                     <button onClick={() => setActive("modalwin")} className="btn-sidemenu">Done</button>
                 </div>
+                {/* logo */}
                 <img className="small" src={butter} alt="logo" />
             </div>
+            {/* active window */}
             <div>
                 {active === "default" && <Default card={cardData} />}
                 {active === "pizza" && <Pizzas card={cardData} />}
