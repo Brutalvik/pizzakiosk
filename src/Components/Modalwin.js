@@ -13,6 +13,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';;
 
 const useStyles = makeStyles({
     tableContainer: {
@@ -47,17 +48,42 @@ const Modalwin = observer(() => {
     const [loading, setLoading] = useState(false)
 
     const [ticket, setTicket] = useState (false)
+
+    const [order, setOrder] = useState (true)
     
 
-    const buttonClick = async() => {
-        setContent(false)
-        setLoading(true)
-        await new Promise(r => setTimeout(r, 3000))
-        setLoading(false)
-        setTicket(true)
-        setTimeout(setContent(true), 4000)
-        setButtonColor('green')
-        setButtonText('Print')
+    const buttonClick = async(buttonText) => {
+        if (buttonText === 'Pay'){
+            if (sub === 0) {
+                setContent(false)
+                setLoading(true)
+                await new Promise(r => setTimeout(r, 2000))
+                setLoading(false)
+                setOrder(false)
+                setButtonText('Back')
+            }
+            else {
+                setContent(false)
+                setLoading(true)
+                await new Promise(r => setTimeout(r, 3000))
+                setLoading(false)
+                setTicket(true)
+                setTimeout(setContent(true), 4000)
+                setButtonColor('#539e3c')
+                setButtonText('Print')
+            } 
+        }
+        else if(buttonText === ('Print'))
+        {
+            setContent(false)
+            setLoading(true)
+            await new Promise(r => setTimeout(r, 3000))
+            setModalState(false)
+        }
+        else {
+            setModalState(false)
+        }
+            
     }
 
     const subtotal = [ 
@@ -137,15 +163,21 @@ const Modalwin = observer(() => {
                                 <TableHead>
                                     <TableRow>
                                         <TableCell className={classes.tableHead}>Your Selections: </TableCell>
-                                        {ticket && (<Paper>Ticket Number # {(Math.random() * 545).toFixed(0)}</Paper>)}
+                                        {ticket && (<Paper>  
+                                        Ticket Number # {(Math.random() * 545).toFixed(0)}
+                                        </Paper>)}
+                                        
                                     </TableRow>
                                 </TableHead>
-
+                                
                                 {cart.map(cart =>
                                     <div>
                                         {cart.product}
                                     </div>
                                 )}
+                                
+                                
+                                
                                 <TableRow>
                                     <TableCell className={classes.tableFoot}>
                                         Subtotal
@@ -181,19 +213,24 @@ const Modalwin = observer(() => {
                             </Table>
                         </TableContainer> )}
 
+                        {!order && (
+                            <div className="order">
+                                <h1>No Order Placed</h1>
+                                <h4>Please select from our menu to place an order</h4>
+                            </div>
+                        )}
                         
                         {loading && (
                         <div className="circle">
-                    <CircularProgress size={68}/>
-                    </div>)}
-                    
+                        <CircularProgress size={68} color={"honeydew"}>
+                        </CircularProgress>
+                        </div>)}
 
                     <div className="modalbtn">
                         <button className="btn-sidemenu" onClick={() => setModalState(false)}>Assistance</button>
-                        <button className="btn-sidemenu" onClick={() => buttonClick()} style={{backgroundColor: buttonColor}}>{buttonText}</button>
+                        <button className="btn-sidemenu" onClick={() => buttonClick(buttonText)} style={{backgroundColor: buttonColor}}>{buttonText}</button>
                     </div>
-                    
-                    
+
                 </div>
             </Modal>
         </div>

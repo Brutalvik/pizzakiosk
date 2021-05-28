@@ -79,12 +79,15 @@
 }
 
 .modal {
-    overflow: auto;
-    color: black;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: white;
+    padding-bottom: 16%;
     text-align: center;
     display: grid;
     place-items: center;
     grid-template-rows: auto auto auto;
+    background-color: #3d4557;
 }
 
 .modalheader {
@@ -123,5 +126,13 @@
 .circle {
     padding-top: 10em;
     height: 10em;
-    width: 10em;
+    width: 5em;
+}
+
+.order {
+    padding: 6.5em;
+}
+
+.check {
+    color: green;
 }

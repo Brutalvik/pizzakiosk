@@ -193,11 +193,13 @@ deserts = [
     }]
 
     add_product = (product, index) => {
-        product[index].quantity++ 
+        product[index].quantity++
+
     }
 
     rem_product = (product, index) => {
-        product[index].quantity--
+        product[index].quantity <= 0 ? product[index].quantity = 0 : product[index].quantity--
+
     }
 }
 
