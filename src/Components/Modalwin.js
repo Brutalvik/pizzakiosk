@@ -45,6 +45,13 @@ const Modalwin = observer(() => {
         store.deserts.filter(desert => desert.quantity > 0).map(desert => desert.price * desert.quantity)
     ]
 
+    var sub = parseFloat(subtotal.map(
+        subtotal => subtotal.map(sub => sub).reduce((a, b) => a+b, 0))
+        .reduce((a, b) => a+b, 0).toFixed(2))
+
+    var GST = 0.05
+    var QST = 0.09975
+
     const cartData = (product) => {
         return {product}
     }
@@ -118,22 +125,32 @@ const Modalwin = observer(() => {
                                         Subtotal
                                     </TableCell>
                                     <TableCell>
-                                        $ {subtotal.map(
-                                            subtotal => subtotal.map(sub => sub).reduce((a, b) => a+b, 0))
-                                            .reduce((a, b) => a+b, 0)}
+                                        $ {sub}
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell className={classes.tableFoot}>
-                                        Tax
+                                        QST
                                     </TableCell>
-                                    <TableCell>Tax Amount</TableCell>
+                                    <TableCell>
+                                    $ {(sub * QST).toFixed(2)}
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell className={classes.tableFoot}>
+                                        GST
+                                    </TableCell>
+                                    <TableCell>
+                                    $ {(sub * GST).toFixed(2)}
+                                    </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell className={classes.tableFoot}>
                                         Total
                                     </TableCell>
-                                    <TableCell>Total Amount</TableCell>
+                                    <TableCell>
+                                        $ {(sub + (sub * QST) + (sub * GST)).toFixed(2)}
+                                    </TableCell>
                                 </TableRow>
                             </Table>
                         </TableContainer>
