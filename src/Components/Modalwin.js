@@ -13,8 +13,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';;
 
+//Styles
 const useStyles = makeStyles({
     tableContainer: {
         marginTop: 30,
@@ -30,6 +30,9 @@ const useStyles = makeStyles({
         fontWeight: 'bold',
         textAlign: 'left',
     },
+    root: {
+        width: '100%',
+      },
 });
 
 const Modalwin = observer(() => {
@@ -37,35 +40,85 @@ const Modalwin = observer(() => {
     const classes = useStyles();
 
     const [modalIsOpen, setModalState] = useState(true)
-
+    //STATES
+    //Main Content Display
     const [content, setContent] = useState(true)
-
     //Button Text
     const [buttonText, setButtonText] = useState('Pay')
-
+    //Button Color
     const [buttonColor, setButtonColor] = useState('#f8aa00')
-
+    //Spinner
     const [loading, setLoading] = useState(false)
-
+    //Ticket Number
     const [ticket, setTicket] = useState (false)
-
+    //Order Status
     const [order, setOrder] = useState (true)
-    
+    //Message Status
+    const [bar, setBar] = useState (false)
+    //Steps
+    const [activeStep, setActiveStep] = useState(0)
+    //Assistance Text
+    const [text, setText] = useState('Contacting...')
+    const [status, setStatus] = useState(false);
+    //Button Controller
+    const [btn, setBtn] = useState(false)
 
+    //Stepper Text
+    function getStepContent(step) {
+        switch (step) {
+            case 0:
+                return 'Processing Your Order..';
+            case 1:
+                return 'Preparing Your Food.....';
+            case 2:
+                return 'Done !';
+            default:
+                return '';
+        }
+      }
+    
+    const assistance = async() => {
+        setBtn(true)
+        setContent(false)
+        setLoading(true)
+        setStatus(true)
+        await new Promise(r => setTimeout(r, 4000))
+        setText('A Rep will be with you shortly.')
+        await new Promise(r => setTimeout(r, 15000))
+        setText('Closing...')
+        await new Promise(r => setTimeout(r, 3000))
+        setLoading(false)
+        setBtn(false)
+        setModalState(false)   
+    }
+    
+    //Dynamic Pay Button Function
     const buttonClick = async(buttonText) => {
         if (buttonText === 'Pay'){
             if (sub === 0) {
+                setBtn(true)
                 setContent(false)
                 setLoading(true)
                 await new Promise(r => setTimeout(r, 2000))
                 setLoading(false)
                 setOrder(false)
+                setBtn(false)
                 setButtonText('Back')
             }
             else {
+                setBtn(true)
                 setContent(false)
                 setLoading(true)
+                setBar(true)
                 await new Promise(r => setTimeout(r, 3000))
+                setActiveStep(0)
+                await new Promise(r => setTimeout(r, 3000))
+                setActiveStep(1)
+                await new Promise(r => setTimeout(r, 3000))
+                setActiveStep(2)
+                await new Promise(r => setTimeout(r, 2000))
+                setBar(false)
+                setBtn(false)
                 setLoading(false)
                 setTicket(true)
                 setTimeout(setContent(true), 4000)
@@ -77,7 +130,7 @@ const Modalwin = observer(() => {
         {
             setContent(false)
             setLoading(true)
-            await new Promise(r => setTimeout(r, 3000))
+            await new Promise(r => setTimeout(r, 2000))
             setModalState(false)
         }
         else {
@@ -86,6 +139,7 @@ const Modalwin = observer(() => {
             
     }
 
+    //Sutotal Array
     const subtotal = [ 
         store.pizzas.filter(pizza => pizza.quantity > 0).map(pizza => pizza.price * pizza.quantity),
         store.pastas.filter(pasta => pasta.quantity > 0).map(pasta => pasta.price * pasta.quantity),
@@ -95,17 +149,21 @@ const Modalwin = observer(() => {
         store.deserts.filter(desert => desert.quantity > 0).map(desert => desert.price * desert.quantity)
     ]
 
+    //Subtotal Calcuation
     var sub = parseFloat(subtotal.map(
         subtotal => subtotal.map(sub => sub).reduce((a, b) => a+b, 0))
         .reduce((a, b) => a+b, 0).toFixed(2))
-
+    
+    //Taxes
     var GST = 0.05
     var QST = 0.09975
-
+    
+    //Product Selections from Array
     const cartData = (product) => {
         return {product}
     }
 
+    //Product Selections Array
     const cart = [
         cartData(store.pizzas.filter(pizza => pizza.quantity > 0).map(pizza => 
             <TableBody>
@@ -145,7 +203,7 @@ const Modalwin = observer(() => {
             </TableBody>))
     ]
 
-
+    //Main
     return (
         <div>
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalState(false)}>
@@ -154,30 +212,30 @@ const Modalwin = observer(() => {
                         <MdClear onClick={() => setModalState(false)} />
                     </div>
                     <div className="modalheader">
-                    <h1>Thank you !</h1>
-                    <h4>Enjoy Your Pizza</h4>
+                        <h1>Thank you !</h1>
+                        <h4>Enjoy Your Pizza</h4>
                     </div>
+                    {/* CONDITIONAL RENDERING OF SELECTED CONTENT */}
+                    {/* TABLE DATA */}
                     {content && (
-                        <TableContainer className={classes.tableContainer} component={Paper}>
+                    <TableContainer className={classes.tableContainer} component={Paper}>
                         <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell className={classes.tableHead}>Your Selections: </TableCell>
-                                        {ticket && (<Paper>  
-                                        Ticket Number # {(Math.random() * 545).toFixed(0)}
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className={classes.tableHead}>Your Selections: </TableCell>
+                                        {ticket && (<Paper style={{backgroundColor:"green", fontWeight:"bold"}}>  
+                                        Ticket # {(Math.random() * 5454).toFixed(0)}
                                         </Paper>)}
                                         
                                     </TableRow>
                                 </TableHead>
-                                
+                                {/* Selections    */}
                                 {cart.map(cart =>
                                     <div>
                                         {cart.product}
                                     </div>
                                 )}
-                                
-                                
-                                
+                                {/* Subtotal, Taxes and Total */}
                                 <TableRow>
                                     <TableCell className={classes.tableFoot}>
                                         Subtotal
@@ -212,25 +270,39 @@ const Modalwin = observer(() => {
                                 </TableRow>
                             </Table>
                         </TableContainer> )}
-
+                        {/* Conditional rendring for No Order */}
                         {!order && (
                             <div className="order">
                                 <h1>No Order Placed</h1>
                                 <h4>Please select from our menu to place an order</h4>
                             </div>
                         )}
-                        
+                        {/* Circular Loading Progress */}
                         {loading && (
                         <div className="circle">
                         <CircularProgress size={68} color={"honeydew"}>
                         </CircularProgress>
                         </div>)}
-
+                        {/* Conditional Progress */}
+                        {bar &&  (
+                            <div>
+                                <h2>
+                                {getStepContent(activeStep)}
+                                </h2>
+                            </div>
+                        )}
+                        {status && (
+                            <div>
+                                <h2>
+                                    {text}
+                                </h2>
+                            </div>
+                        )}
+                    {/* Footer Buttons */}
                     <div className="modalbtn">
-                        <button className="btn-sidemenu" onClick={() => setModalState(false)}>Assistance</button>
-                        <button className="btn-sidemenu" onClick={() => buttonClick(buttonText)} style={{backgroundColor: buttonColor}}>{buttonText}</button>
+                        <button disabled={btn} className="btn-sidemenu" onClick={() => assistance()}>Assistance</button>
+                        <button disabled={btn} className="btn-sidemenu" onClick={() => buttonClick(buttonText)} style={{backgroundColor: buttonColor}}>{buttonText}</button>
                     </div>
-
                 </div>
             </Modal>
         </div>
