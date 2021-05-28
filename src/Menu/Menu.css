@@ -88,6 +88,7 @@
 }
 
 .modalheader {
+    overflow: hidden;
     margin-bottom: -20px;
     margin-top: -50px;
 }
@@ -117,4 +118,10 @@
 .price {
     text-align: left;
     word-spacing: 10px;
+}
+
+.circle {
+    padding-top: 10em;
+    height: 10em;
+    width: 10em;
 }

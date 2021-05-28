@@ -12,6 +12,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles({
     tableContainer: {
@@ -35,6 +36,29 @@ const Modalwin = observer(() => {
     const classes = useStyles();
 
     const [modalIsOpen, setModalState] = useState(true)
+
+    const [content, setContent] = useState(true)
+
+    //Button Text
+    const [buttonText, setButtonText] = useState('Pay')
+
+    const [buttonColor, setButtonColor] = useState('#f8aa00')
+
+    const [loading, setLoading] = useState(false)
+
+    const [ticket, setTicket] = useState (false)
+    
+
+    const buttonClick = async() => {
+        setContent(false)
+        setLoading(true)
+        await new Promise(r => setTimeout(r, 3000))
+        setLoading(false)
+        setTicket(true)
+        setTimeout(setContent(true), 4000)
+        setButtonColor('green')
+        setButtonText('Print')
+    }
 
     const subtotal = [ 
         store.pizzas.filter(pizza => pizza.quantity > 0).map(pizza => pizza.price * pizza.quantity),
@@ -107,11 +131,13 @@ const Modalwin = observer(() => {
                     <h1>Thank you !</h1>
                     <h4>Enjoy Your Pizza</h4>
                     </div>
+                    {content && (
                         <TableContainer className={classes.tableContainer} component={Paper}>
-                            <Table>
+                        <Table>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell className={classes.tableHead}>Your Selections: </TableCell>
+                                        {ticket && (<Paper>Ticket Number # {(Math.random() * 545).toFixed(0)}</Paper>)}
                                     </TableRow>
                                 </TableHead>
 
@@ -149,15 +175,25 @@ const Modalwin = observer(() => {
                                         Total
                                     </TableCell>
                                     <TableCell>
-                                        $ {(sub + (sub * QST) + (sub * GST)).toFixed(2)}
+                                       $ {(sub + (sub * QST) + (sub * GST)).toFixed(2)}
                                     </TableCell>
                                 </TableRow>
                             </Table>
-                        </TableContainer>
+                        </TableContainer> )}
+
+                        
+                        {loading && (
+                        <div className="circle">
+                    <CircularProgress size={68}/>
+                    </div>)}
+                    
+
                     <div className="modalbtn">
                         <button className="btn-sidemenu" onClick={() => setModalState(false)}>Assistance</button>
-                        <button className="btn-sidemenu" onClick={() => setModalState(false)}>Pay</button>
+                        <button className="btn-sidemenu" onClick={() => buttonClick()} style={{backgroundColor: buttonColor}}>{buttonText}</button>
                     </div>
+                    
+                    
                 </div>
             </Modal>
         </div>
