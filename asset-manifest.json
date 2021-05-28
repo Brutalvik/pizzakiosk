@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Brutalvik/pizzakiosk.git/static/css/main.2f2d5230.chunk.css",
+    "main.js": "/Brutalvik/pizzakiosk.git/static/js/main.1ae1bf1a.chunk.js",
+    "main.js.map": "/Brutalvik/pizzakiosk.git/static/js/main.1ae1bf1a.chunk.js.map",
+    "runtime-main.js": "/Brutalvik/pizzakiosk.git/static/js/runtime-main.d927ded6.js",
+    "runtime-main.js.map": "/Brutalvik/pizzakiosk.git/static/js/runtime-main.d927ded6.js.map",
+    "static/js/2.fbae4389.chunk.js": "/Brutalvik/pizzakiosk.git/static/js/2.fbae4389.chunk.js",
+    "static/js/2.fbae4389.chunk.js.map": "/Brutalvik/pizzakiosk.git/static/js/2.fbae4389.chunk.js.map",
+    "index.html": "/Brutalvik/pizzakiosk.git/index.html",
+    "static/css/main.2f2d5230.chunk.css.map": "/Brutalvik/pizzakiosk.git/static/css/main.2f2d5230.chunk.css.map",
+    "static/js/2.fbae4389.chunk.js.LICENSE.txt": "/Brutalvik/pizzakiosk.git/static/js/2.fbae4389.chunk.js.LICENSE.txt",
+    "static/media/butter.710157d9.png": "/Brutalvik/pizzakiosk.git/static/media/butter.710157d9.png",
+    "static/media/logo.46e72ffa.png": "/Brutalvik/pizzakiosk.git/static/media/logo.46e72ffa.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d927ded6.js",
+    "static/js/2.fbae4389.chunk.js",
+    "static/css/main.2f2d5230.chunk.css",
+    "static/js/main.1ae1bf1a.chunk.js"
+  ]
+}
